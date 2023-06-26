@@ -14,7 +14,6 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 
 N,M = mi()
-ans = 1
 
 dp = [[0]*(N+5) for _ in range(2)]
 
