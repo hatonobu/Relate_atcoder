@@ -12,17 +12,17 @@ mi = lambda: map(int, input().split())
 li = lambda: list(mi())
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
+    
+N = ii()
+check = []
 
-N,M = mi()
+for i in range(N):
+    a,b = mi()
+    num = a / (a+b)
+    bisect.insort_left(check,(num,i+1))
 
-dp = [[0]*(N+5) for _ in range(2)]
+ans = []
+for x,y in check:
+    ans.append(y)
 
-dp[1][1] = M
-for i in range(1,N):
-    dp[0][i+1] += dp[0][i]*(M-2)
-    dp[1][i+1] += dp[0][i]
-    dp[0][i+1] += dp[1][i]*(M-1)
-    dp[0][i+1] %= mod
-    dp[1][i+1] %= mod
-
-print(dp[0][N])
+print(*ans)
