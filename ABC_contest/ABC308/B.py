@@ -10,22 +10,23 @@ input = lambda: sys.stdin.readline().rstrip()
 ii = lambda: int(input())
 mi = lambda: map(int, input().split())
 li = lambda: list(mi())
+li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 
-S = li()
-for i in range(7):
-    if S[i+1] < S[i]:
-        print("No")
-        exit()
-    if S[i] % 25 != 0:
-        print("No")
-        exit()
-    if S[i] < 100 or S[i] > 675:
-        print("No")
-        exit()
+N,M = mi()
+C = li_st()
+D = li_st()
+P = li()
 
-if S[7] % 25 != 0 or (S[7] < 100 or S[7] > 675):
-    print("No")
-else:
-    print("Yes")
+ans = 0
+for s in C:
+    for j in range(M):
+        num = 0
+        if s == D[j]:
+            num = j+1
+            break
+    ans += P[num]
+
+print(ans)
+
