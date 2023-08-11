@@ -1,0 +1,27 @@
+def rot_left90(S):
+    return list(zip(*S[::-1]))
+
+def shift_left_n(lis,n):
+    return_lis = []
+    for l in lis:
+        return_lis.append(l[n:]+l[:n])
+    return return_lis
+
+def print_lis(lis):
+    for i in lis:
+        print(i)
+    print("==================")
+
+def shift_up_n(lis,n):
+    return_lis = []
+    N = len(lis)
+    for i in range(n,N):
+        return_lis.append(lis[i])
+    for j in range(n):
+        return_lis.append(lis[j])
+    return return_lis
+
+
+#原点で考えた時、90度回転は次のように捉えられる　(x,y)→(-y,x)
+#この座標返還を後に原点に平行移動することで一致判定が早くできる
+#ABC218-C:Shapes, ABC307-C:Ideal Sheet

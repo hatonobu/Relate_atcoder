@@ -1,0 +1,32 @@
+#https://output-zakki.com/topological_sort/
+
+from collections import deque
+import heapq
+#Gは[[],[],[],[]]のような形式, intonumは他の参照箇所の個数(入次数)
+#辞書順最小が出るトポロジカルソート
+def topological_sort(g, into_num):
+    #入ってくる有向辺を持たないノードを列挙
+    q = []
+    #V: 頂点数
+    for i,num in enumerate(into_num):
+        if num==0:
+            heapq.heappush(q,i)
+    
+    #以下、幅優先探索
+    ans = []
+    while q:
+        v =heapq.heappop(q)
+        ans.append(v+1) 
+        for adj in g[v]:
+            into_num[adj] -= 1 #入次数を減らす
+            if into_num[adj]==0:
+                heapq.heappush(q,adj) #入次数が0になったら、キューに入れる
+    
+    return ans
+
+#閉路が確認したい場合,
+#if len(ans) == len(G): 
+#   print("閉路なし")
+#else:
+#   print("閉路あり")
+#以上の方法で確認することができる
