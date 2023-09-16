@@ -4,7 +4,6 @@ import itertools
 import heapq
 import bisect
 import queue
-import math
 
 #sys.setrecursionlimit(10 ** 9)
 input = lambda: sys.stdin.readline().rstrip()
@@ -16,15 +15,25 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 
 N = ii()
-p = li()
-check = set()
-ans = 0
+A = li()
+d1 = defaultdict(list)
 
-for num in p:
-    check.add(num)
-    while(1):
-        if ans in check:
-            ans += 1
-        else:
-            break
-    print(ans)
+ans = 0
+check = set()
+for i in range(N):
+    num = A[i]
+    if len(d1[num]):
+        check.add(num)
+        d1[num].append(i)
+    else:
+        d1[num].append(i)
+
+check = list(check)
+ans = 0
+for n in check:
+    l = d1[n]
+    times = len(l)
+    for k in range(times-1):
+        ans += ((times - 1 - k) * (k+1)) * (l[k+1] - l[k] - 1)
+    
+print(ans)

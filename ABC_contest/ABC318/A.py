@@ -4,7 +4,6 @@ import itertools
 import heapq
 import bisect
 import queue
-import math
 
 #sys.setrecursionlimit(10 ** 9)
 input = lambda: sys.stdin.readline().rstrip()
@@ -15,16 +14,9 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 
-N = ii()
-p = li()
-check = set()
-ans = 0
+N,M,P = mi()
 
-for num in p:
-    check.add(num)
-    while(1):
-        if ans in check:
-            ans += 1
-        else:
-            break
-    print(ans)
+if N >= M:
+    print(((N-M) // P) + 1)
+else:
+    print(0)
