@@ -1,0 +1,21 @@
+#itertoolによる便利な処理まとめ、メモ等
+
+import itertools
+
+#bit全探索
+N = 1
+for e in itertools.product(range(2),repeat=N):
+    print(e)
+    #process
+
+#list内全探索
+lis = [[1,2,3],[4,5,6],[7,8,9]]
+for e in itertools.product(*lis):
+    print(e)
+    #(1,4,7),(1,4,8),(1,4,9),(1,5,7), ... , (3,6,9)
+    #process
+
+#1-9までの前列挙
+for e in itertools.permutations(range(9)):
+    print(e)
+    #(1,2,3,4,5,6,7,8,9),(1,2,3,4,5,6,7,9,8), ... , (9,8,7,6,5,4,3,2,1)

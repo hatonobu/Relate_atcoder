@@ -4,24 +4,34 @@ import itertools
 import heapq
 import bisect
 import queue
-import math
 
 #sys.setrecursionlimit(10 ** 9)
 input = lambda: sys.stdin.readline().rstrip()
 ii = lambda: int(input())
 mi = lambda: map(int, input().split())
-ml = lambda: map(str, input().split())
 li = lambda: list(mi())
 li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 
-S1,S2,S3 = ml()
-T1,T2,T3 = ml()
+N,M,P = mi()
+A = li()
+B = li()
 
-check = (S1 == T1) + (S2 == T2) + (S3 == T3)
-if check == 0 or check == 3:
-    print("Yes")
-else:
-    print("No")
-        
+B.sort()
+l = len(B)
+r_b = [0]
+for b in B:
+    r_b.append(r_b[-1] + b)
+
+ans = 0
+for a in A:
+    if a > P:
+        ans += P * l
+        continue
+    num = P - a
+    p = bisect.bisect_left(B,num)
+    ans += P * (l-p)
+    ans += a * p + r_b[p]
+
+print(ans)
