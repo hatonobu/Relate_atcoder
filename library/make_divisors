@@ -1,4 +1,4 @@
-#素数列挙
+#約数列挙(O(sqrtN))
 #https://qiita.com/LorseKudos/items/9eb560494862c8b4eb56
 
 def make_divisors(n):

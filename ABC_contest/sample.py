@@ -16,12 +16,31 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 
-S1,S2,S3 = ml()
-T1,T2,T3 = ml()
+N = ii()
+A = lli(2*N - 1)
+ans = 0
 
-check = (S1 == T1) + (S2 == T2) + (S3 == T3)
-if check == 0 or check == 3:
-    print("Yes")
-else:
-    print("No")
-        
+def dfs(used,B):
+    global ans
+    if all(used):
+        ans = max(ans,B)
+        return True
+    a = used.index(False)
+    used[a] = True
+    for num in range(a+1,2*N):
+        if used[num] == False:
+            B_next = B ^ A[a][num-a-1]
+            #print(A[a][num-a-1])
+            used[num] = True
+            dfs(used,B_next)
+            used[num] = False
+    used[a] = False
+    return B
+
+used = [False] * (2*N)
+aa = dfs(used,0)
+print(ans)
+
+
+
+

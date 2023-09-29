@@ -1,0 +1,23 @@
+#ランレングス圧縮
+from itertools import groupby
+strings = "aabbbbbbbbbbbba" #圧縮前
+
+ans = [(k, len(list(g))) for k,g in groupby(strings)]
+print(ans)
+
+#ABC259-C XX to XXX
+#https://output-zakki.com/run_length_encoding/　による実装
+def rle(s):
+    n = len(s) #文字列の長さ
+    ans = [] #圧縮後のリスト
+    l = 0 #始点
+    while l<n:
+        r = l+1
+        while r<n and s[l]==s[r]: #異なる文字になるまで進む
+            r += 1
+        ans.append((s[l], r-l)) #文字,連続する個数
+        l = r #連続しなかった文字から探索を開始
+    return ans
+
+#この形で出力することをランレングス符号化ともいう。
+#例題 ABC247-D Cylinder
