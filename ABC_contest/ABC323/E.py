@@ -15,20 +15,18 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 
-N = ii()
-S = [input() for _ in range(N)]
-lis = []
-for i in range(N):
-    lis.append([0.01*(1-(i+1)),i+1])
+N,X = mi()
+T = li()
 
-for i in range(N):
-    for s in S[i]:
-        if s == "o":
-            lis[i][0] += 1
+dp = [0 for _ in range(X+2)]
 
-lis.sort(reverse=True)
-ans = []
-for n in lis:
-    ans.append(n[1])
+for i in range(X+1):
+    for j in range(N):
+        if T[j] > i:
+            if j == 0:
+                dp[i] += 1
+        else:
+            dp[i] += dp[i - T[j]]
+    dp[i] = (dp[i] * pow(N,-1,mod)) % mod
 
-print(*ans)
+print(dp[X])

@@ -1,8 +1,8 @@
 #ランレングス圧縮
-from itertools import groupby
-strings = "aabbbbbbbbbbbba" #圧縮前
+import itertools
+S = "aabbbbbbbbbbbba" #圧縮前
 
-ans = [(k, len(list(g))) for k,g in groupby(strings)]
+ans = [(k, len(list(g))) for k,g in itertools.groupby(S)]
 print(ans)
 
 #ABC259-C XX to XXX

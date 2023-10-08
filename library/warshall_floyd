@@ -1,0 +1,20 @@
+#https://pydocument.hatenablog.com/entry/2023/04/27/001232
+
+#graphの指定は以下のような形式
+#graph = [[0, 5, INF, 10],
+#         [INF, 0, 3, INF],
+#         [INF, INF, 0, 1],
+#         [INF, INF, INF, 0]]
+INF = 10**18
+
+def floyd_warshall(graph):
+    n = len(graph)
+    dist = [[INF for j in range(n)] for i in range(n)]
+    for i in range(n):
+        for j in range(n):
+            dist[i][j] = graph[i][j]
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+    return dist
