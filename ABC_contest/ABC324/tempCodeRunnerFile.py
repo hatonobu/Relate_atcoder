@@ -1,0 +1,2 @@
+
+    for ss in s:
