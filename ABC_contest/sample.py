@@ -16,17 +16,23 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 
-L,R = mi()
-S = input()
+N,X,F,S = mi()
+dp = [0] * (100000)
+life = [-1] * (100000)
+life[0] = X
 
-ans = []
-check = []
+l = 0
+now = X
 
-for i in range(len(S)):
-    s = S[i]
-    if L <= i+1 <= R:
-        check.append(s)
-    else:
-        ans.append(s)
+for i in range(1,N*X*2):
+    l += 1
+    dp[i] = dp[i-1] + now
+    now -= F
+    if now <= 0:
+        break
 
-print("".join(ans[:L-1]),"".join(check[::-1]),"".join(ans[L-1:]),sep="")
+times = (N-dp[l]) // S
+for i in range(1,times+1):
+    now = S
+    
+    

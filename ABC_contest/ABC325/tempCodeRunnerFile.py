@@ -20,6 +20,7 @@ d = dict()
 N = ii()
 TD = lli(N)
 TD.sort()
+print(TD)
 
 q = []
 heapq.heapify(q)
@@ -38,9 +39,7 @@ for i in range(N):
             else:
                 pass
         heapq.heappush(q,t+d+1)
-        s = t
 
-s = t
 while(q):
     now_t = heapq.heappop(q)
     if s < now_t:
