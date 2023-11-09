@@ -6,7 +6,7 @@ import bisect
 import queue
 import math
 
-#sys.setrecursionlimit(10 ** 9)
+sys.setrecursionlimit(10 ** 8)
 input = lambda: sys.stdin.readline().rstrip()
 ii = lambda: int(input())
 mi = lambda: map(int, input().split())
@@ -16,23 +16,29 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 
-N,X,F,S = mi()
-dp = [0] * (100000)
-life = [-1] * (100000)
-life[0] = X
+N,X,Y = mi()
 
-l = 0
-now = X
+G = [[] for _ in range(N+1)]
+for i in range(N-1):
+    u,v = mi()
+    G[u].append(v)
+    G[v].append(u)
 
-for i in range(1,N*X*2):
-    l += 1
-    dp[i] = dp[i-1] + now
-    now -= F
-    if now <= 0:
-        break
+ans = []
+def dfs2(s,g,used):
+    if used[s]:
+        return
+    else:   
+       ans.append(s)
+       for nxt in G[s]:
+            if nxt == g:
+                ans.append(nxt)
+                print(*ans)
+                exit()
+            else:
+                used[s] = True
+                dfs2(nxt,g,used)
+    ans.pop()
 
-times = (N-dp[l]) // S
-for i in range(1,times+1):
-    now = S
-    
-    
+used = [False] * (N+1)
+dfs2(X,Y,used)

@@ -1,0 +1,42 @@
+import sys
+sys.setrecursionlimit(10 ** 9)
+mi = lambda: map(int, input().split())
+N = 10**10
+
+G = [[] for _ in range(N+1)]
+for i in range(N):
+    a,b = mi()
+    G[b].append(a)
+    G[a].append(b)
+
+ans=[]
+def dfs(crr,pre):
+  ans.append(crr)
+  for nxt in G[crr]:
+    if nxt!=pre:
+      dfs(nxt,crr)
+      ans.append(crr)
+
+dfs(1,-1)
+
+###############################################
+###############################################
+#pattern2
+
+ans = []
+def dfs2(s,used):
+    if used[s]:
+        return
+    else:   
+       for nxt in G[s]:
+            if used[nxt] == True:
+                pass
+            else:
+                ans.append(s)
+                used[s] = True
+                dfs(nxt,used)
+    used[s] = False
+    ans.append(s)
+
+used = [False] * (N+1)
+dfs(1,used)

@@ -1,0 +1,14 @@
+#Nまでのmexを求める
+def mex(a,b,c,N):
+  for i in range(N):
+    if a != i and b != i and c != i: 
+       return i
+  
+#inverse elements(逆元)
+mod = 998244353
+A = 5
+#A / B
+#Bを逆元化させる
+#例　5/100
+#pow(B,mod-2,mod)
+A*pow(100,mod-2,mod)%mod

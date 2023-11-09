@@ -1,5 +1,0 @@
-#Nまでのmexを求める
-def mex(a,b,c,N):
-  for i in range(N):
-    if a != i and b != i and c != i: 
-       return i
