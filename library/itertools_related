@@ -3,7 +3,7 @@
 import itertools
 
 #bit全探索
-N = 1
+N = 2
 for e in itertools.product(range(2),repeat=N):
     print(e)
     #process
@@ -15,7 +15,12 @@ for e in itertools.product(*lis):
     #(1,4,7),(1,4,8),(1,4,9),(1,5,7), ... , (3,6,9)
     #process
 
-#1-9までの前列挙
-for e in itertools.permutations(range(9)):
+#1-4までの前列挙
+for e in itertools.permutations(range(4)):
     print(e)
     #(1,2,3,4,5,6,7,8,9),(1,2,3,4,5,6,7,9,8), ... , (9,8,7,6,5,4,3,2,1)
+
+#nCrの列挙(n=range, r = (第二引数))
+for e in itertools.combinations(range(3),2):
+    print(e)
+    #(0,1),(0,2),(1,2)

@@ -22,3 +22,10 @@ def meguru_bisect(ng, ok):
             ng = mid
     return ok
 
+while (abs(right - left) > 1):
+    mid = (right + left) // 2
+    if is_ok(mid):
+        right = mid
+    else:
+        left = mid
+
