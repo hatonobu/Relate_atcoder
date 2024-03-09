@@ -1,3 +1,5 @@
+# https://qiita.com/Yuya-Shimizu/items/eefdc6f854534e90c988
+
 import heapq
 
 def dijkstra(edges, num_node,start):
