@@ -40,4 +40,4 @@ for i in range(N):
                     ans_new[j+len(s)] = min(ans[j] + 1,ans[j+len(s)])
     ans = ans_new[::]
 
-print(ans[len(T)] if ans[len(T)] != INF else -1)
+print(ans[len(T)])

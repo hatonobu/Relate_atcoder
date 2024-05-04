@@ -16,12 +16,16 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N,K = mi()
-A =li()
-ans = []
+N = ii()
+total = 0
+AB = []
+for i in range(N):
+    A,B = mi()
+    total += A
+    AB.append([A,B])
 
-for a in A:
-    if a % K == 0:
-        ans.append(a // K)
+ans = 0
+for a,b in AB:
+    ans = max(ans,total-a+b)
 
-print(*ans)
+print(ans)

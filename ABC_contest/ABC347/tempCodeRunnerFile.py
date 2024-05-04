@@ -30,6 +30,7 @@ for i in range(60):
             B[i] = 1
             b -= 1
 
+print(a,b)
 if a != b:
     print(-1)
     exit()

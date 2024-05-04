@@ -15,13 +15,16 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+    
+N = ii()
+AB = lli(N-1)
+C = li()
 
-N,K = mi()
-A =li()
-ans = []
+G1 = [ []for _ in range(N+1)]
+G2 = [ []for _ in range(N+1)]
 
-for a in A:
-    if a % K == 0:
-        ans.append(a // K)
+for a,b in AB:
+    G1[a].append(b)
+    G2[b].append(a)
 
-print(*ans)
+print(G1,G2)

@@ -16,33 +16,22 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N,A,B = mi()
-D = li()
+S = input()
+d = defaultdict(int)
+lis = [0]*110
 
-for i in range(N):
-    num = D[i] // (A+B)
-    D[i] -= (A+B) * num
-    if D[i] == 0:
-        D[i] += (A+B)
+for s in S:
+    n = (ord(s) - ord("a"))
+    if d.get(n,0) != 0:
+        lis[d[n]] -= 1
+    d[n] += 1
+    lis[d[n]] += 1
 
-ans = "Yes"
-min_d = INF
-max_d = -1
-for d in D:
-    min_d = min(min_d,d)
-    max_d = max(max_d,d)
-
-if max_d - min_d >= A:
-    total = 0
-    for d in D:
-        if d > A:
-            b_num = d
-            break
-        else:
-            total = d
-    if total + (A + B - b_num + 1) <= A:
-        print("Yes")
+for i in range(110):
+    if lis[i] == 0 or lis[i] == 2:
+        continue
     else:
         print("No")
-else:
-    print("Yes")
+        exit()
+
+print("Yes") 

@@ -16,12 +16,6 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N,K = mi()
-A =li()
-ans = []
+A = lli(3)
 
-for a in A:
-    if a % K == 0:
-        ans.append(a // K)
-
-print(*ans)
+print(A)

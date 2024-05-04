@@ -16,12 +16,19 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N,K = mi()
-A =li()
-ans = []
+N = ii()
+XY = lli(N)
 
-for a in A:
-    if a % K == 0:
-        ans.append(a // K)
-
-print(*ans)
+for i in range(N):
+    x1,y1 = XY[i]
+    total = -1
+    ans = -1
+    for j in range(N):
+        if i == j:
+            continue
+        x2,y2 = XY[j]
+        dist = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 2
+        if total < dist:
+            total = dist
+            ans = j
+    print(ans+1)

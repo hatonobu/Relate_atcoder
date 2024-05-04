@@ -16,33 +16,15 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N,A,B = mi()
-D = li()
+S = input()
+a = S[:3]
+b = S[3:]
+b = int(b)
 
-for i in range(N):
-    num = D[i] // (A+B)
-    D[i] -= (A+B) * num
-    if D[i] == 0:
-        D[i] += (A+B)
-
-ans = "Yes"
-min_d = INF
-max_d = -1
-for d in D:
-    min_d = min(min_d,d)
-    max_d = max(max_d,d)
-
-if max_d - min_d >= A:
-    total = 0
-    for d in D:
-        if d > A:
-            b_num = d
-            break
-        else:
-            total = d
-    if total + (A + B - b_num + 1) <= A:
+if a == "ABC":
+    if 1 <= b <= 315 or 317 <= b <= 349:
         print("Yes")
     else:
         print("No")
 else:
-    print("Yes")
+    print("No")

@@ -16,12 +16,23 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N,K = mi()
-A =li()
+N = ii()
+A = li()
+
+pos = [-1]*N
+for i in range(N):
+    pos[A[i]-1] = i
+
 ans = []
+for j in range(N):
+    if A[j] == j+1:
+        continue
+    ans.append([j+1,pos[j]+1])
+    num = A[j]
+    A[j] , A[pos[j]] = A[pos[j]], A[j] 
+    pos[j], pos[num-1] = pos[num-1], pos[j]
+    #print(A,pos)
 
-for a in A:
-    if a % K == 0:
-        ans.append(a // K)
-
-print(*ans)
+print(len(ans))
+for n in ans:
+    print(*n)

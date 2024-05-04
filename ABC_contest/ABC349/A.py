@@ -16,12 +16,21 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N,K = mi()
-A =li()
-ans = []
+N = ii()
+A = li()
+ans = [0]* N
 
-for a in A:
-    if a % K == 0:
-        ans.append(a // K)
+for i in range(N-1):
+    num = abs(ans[i]-A[i])
+    if A[i] > ans[i]:
+        pass
+    else:
+        num *= -1
+    
+    ans[i] += num
+    ans[i+1] -= num
 
-print(*ans)
+print(ans[N-1])
+    
+
+    

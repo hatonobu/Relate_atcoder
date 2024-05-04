@@ -16,12 +16,12 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N,K = mi()
-A =li()
-ans = []
+N,X,Y,Z = mi()
 
-for a in A:
-    if a % K == 0:
-        ans.append(a // K)
+left = min(X,Y)
+right = max(X,Y)
 
-print(*ans)
+if left <= Z <= right:
+    print("Yes")
+else:
+    print("No")
