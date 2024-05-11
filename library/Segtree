@@ -1,5 +1,7 @@
 # https://qiita.com/takayg1/items/c811bd07c21923d7ec69
 
+#ABC-352D,ABC-343F,ABC-322F(遅延セグ木)
+
 #list型で引き渡すことに注意
 #dp等で使いたい場合は初期リストを生成する : lis = [0]*(N)
 
@@ -85,3 +87,7 @@ class SegTree:
         return res
 
 seg = SegTree(a, segfunc, ide_ele)
+
+
+
+

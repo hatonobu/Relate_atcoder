@@ -1,0 +1,32 @@
+#https://qiita.com/hyouchun/items/1748bd320d2188a999f2
+#できること：区間更新・区間演算をlog(N)でできる,
+
+from atcoder.lazysegtree import LazySegTree
+
+
+# 区間演算op
+def op(data1, data2):
+    return max(data1, data2)
+
+
+# opの単位元 op(data1, e) = data1
+e = -float("Inf")
+
+
+# lazyをdataに作用させる
+def mapping(lazy_upper, data_lower):
+    return data_lower + lazy_upper
+
+
+# lazyをlazyに作用させる
+def composition(lazy_upper, lazy_lower):
+    return lazy_upper + lazy_lower
+
+
+# mapping(_id, data_lower) = data_lower
+_id = 0
+
+N = int(input())
+A = list(map(int, input().split()))
+
+lazy_segtree = LazySegTree(op, e, mapping, composition, _id, A)

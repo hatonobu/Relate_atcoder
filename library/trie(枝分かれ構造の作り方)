@@ -1,0 +1,22 @@
+#ABC-353E
+
+Node_size = 26 #枝分かれの数(a-zまでだと26個の枝分かれ)
+
+class Node:
+    def __init__(self):
+        self.cnt = 0
+        self.child = [None]*Node_size
+
+S = ["abcd", "abfg", "bcfg","bgfr"]
+
+
+root = Node() #初期の分岐先作成
+for s in S:
+    now = Node() #現在の位置をrootに固定する
+    for j in s:
+        check = ord(j) - ord("a") #枝分かれ先の計算
+        if now.child[check] == None:
+            now.child[check] = Node() #枝分かれができていなければ作成
+        now = now.child[check] #枝分かれ先への移動
+        now.cnt += 1 #ここまで到達している文字列の数に追加
+    

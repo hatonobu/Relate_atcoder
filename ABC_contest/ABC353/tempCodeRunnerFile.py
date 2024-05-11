@@ -19,23 +19,26 @@ INF = 8 * 10**18
 N = ii()
 S = li_st()
 
-class Node:
-    def __init__(self):
-        self.cnt = 0
-        self.child = [None]*26
+dp = [[0]*(26) for _ in range(2*10**5+1)]
 
-ans = 0
-root = Node()
-
-ans = 0
 for s in S:
-    now = root
-    for ss in s:
-        n = ord(ss) - ord("a")
-        if now.child[n] == None:
-            now.child[n] = Node()
-        now = now.child[n]
-        ans += now.cnt
-        now.cnt += 1
+    for i in range(len(s)):
+        num = ord(s[i]) - ord("a")
+        dp[i][num] += 1
+
+ans = 0
+for k in range(N-1):
+    s = S[k]
+
+    for i in range(len(s)):
+        num = ord(s[i]) - ord("a")
+        if dp[i][num] > 1:
+            ans += (dp[i][num] - 1)
+        else:
+            break
+
+    for j in range(len(s)):
+        num = ord(s[j]) - ord("a")
+        dp[j][num] -= 1
 
 print(ans)

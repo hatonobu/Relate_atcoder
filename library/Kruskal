@@ -1,25 +1,5 @@
-import sys
-from collections import deque,defaultdict
-import itertools
-import heapq
-import bisect
-
-sys.setrecursionlimit(10**9)
-input = lambda: sys.stdin.readline().rstrip()
-ii = lambda: int(input())
-mi = lambda: map(int, input().split())
-li = lambda: list(mi())
-li_st = lambda: list(map(str, input().split()))
-lli = lambda n: [li() for _ in range(n)]
-lli_st = lambda n: [list(input()) for _ in range(n)]
-mod = 998244353
-INF = 10**18
-
-N,M = mi()
-ABC = lli(M)
-
 #https://output-zakki.com/kruskal_method/
-#ABC-352E,ABC-218E
+#ABC-352E
 
 #(重み, (出発ノード, 行き先ノード) )として管理
 #Edges = [(1, (0, 3)), (1, (2, 3)), (1, (2, 4)), (2, (0, 2)), (3, (0, 1)), (3, (3, 4)), (4, (1, 3))]
