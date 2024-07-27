@@ -17,13 +17,10 @@ class UnionFind():
     def union(self, x, y):
         x = self.find(x)
         y = self.find(y)
-
         if x == y:
             return
-
         if self.parents[x] > self.parents[y]:
             x, y = y, x
-
         self.parents[x] += self.parents[y]
         self.parents[y] = x
     #要素xが属するグループのサイズを返す

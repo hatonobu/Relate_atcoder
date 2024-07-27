@@ -40,3 +40,20 @@ for i in range(N):
 node_num = N
 
 opt_node = dijkstra(Edges, node_num,0)
+
+#ダイクストラ法その2
+def dijkstra(G, s):
+    INF = 10**18
+    dist = [INF] * len(G)
+    dist[s] = 0
+    pq = [(0, s)]
+    while pq:
+        d, v = heappop(pq)
+        if d > dist[v]:
+            continue
+        for u, weight in G[v]:
+            nd = d + weight
+            if dist[u] > nd:
+                dist[u] = nd
+                heappush(pq, (nd, u))
+    return dist

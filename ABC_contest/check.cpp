@@ -1,69 +1,44 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <set>
+
 using namespace std;
-typedef long long ll;
-#define rrep(i, n) for (int i = 1; i <= (int)(n); i++)
-#define rep(i, n) for (int i = 0; i < (int)(n); i++)
-#define all(x) (x).begin(), (x).end()
-#define rall(x) (x).rbegin(), (x).rend()
-#define mod 998244353
 
-template <class T>
-bool clamp(T x, T min, T max) { return (x >= min and x <= max); }
-template <class T>
-void chmin(T &a, const T &b) noexcept
-{
-    if (b < a)
-        a = b;
-}
-template <class T>
-void chmax(T &a, const T &b) noexcept
-{
-    if (a < b)
-        a = b;
-}
+const long long MOD = 998244353;
+const long long INF = 8 * 1000000000000000000LL;
 
-
-template <class T>
-void print(vector<T> &a)
-{
-    for (auto nx : a)
-        cout << nx << ' ';
-    cout << endl;
+bool check(const string &s, int k) {
+    for (int i = 0; i <= s.size() - k; ++i) {
+        string t = s.substr(i, k);
+        string rt = t;
+        reverse(rt.begin(), rt.end());
+        if (t == rt) {
+            return false;
+        }
+    }
+    return true;
 }
 
 int main() {
-    // code
-    int n,d,p;
-    cin >> n >> d >> p;
-    vector<ll> f(n+d);
-    rep(i,n){
-        cin >> f[i];
-    }
-    sort(rall(f));
-    ll cnt=0;
-    ll sum=0;
-    for(int i = 0;i<d;i++){
-        sum += f[i];
-        //cout << i << ',' << sum << endl;
-        if(i == d-1 and sum > p){
-            i=0;
-            sum = 0;
-            cnt++;
-            f.erase(f.begin(),f.begin()+d);
-        }
-        else{
+    int N, K;
+    cin >> N >> K;
+    string S;
+    cin >> S;
 
-        }
-    }
+    set<string> check_set;
+    int ans = 0;
 
-    print(f);
-    //cout << cnt << endl;
-    //if(cnt>=1)f.erase(f.begin(),f.begin()+d*cnt);
-    ll ans = 0;
-    for(int i =0;i < n;i++){
-        //cout <<  << endl;
-        ans += f[i];
-    }
-    cout << ans+p*cnt << endl;
+    sort(S.begin(), S.end());
+    do {
+        if (check(S, K)) {
+            ans += 1;
+            check_set.insert(S);
+        }
+    } while (next_permutation(S.begin(), S.end()));
+
+    cout << ans << endl;
+
     return 0;
 }
