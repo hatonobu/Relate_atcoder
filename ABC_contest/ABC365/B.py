@@ -15,3 +15,13 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+N = ii()
+A = li()
+
+lis = []
+for i in range(N):
+    lis.append((A[i],i+1))
+
+lis.sort()
+print(lis[-2][1])

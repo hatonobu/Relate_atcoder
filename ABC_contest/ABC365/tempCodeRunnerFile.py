@@ -16,27 +16,16 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N,K = mi()
-if N-K == 1:
-    print(0)
-    exit()
-q = deque()
-A = li()
-A.sort()
-check = []
-for i in range(N-1):
-    check.append(A[i+1] - A[i])
+Y = ii()
 
-ans = INF
-
-total = 1
-c = 0
-for i in range(N-1):
-    c += check[i]
-    total += 1
-    if total >= N-K:
-        ans = min(ans,c)
-        c -= check[i-K+1]
-        total -= 1
-
+ans = 365
+if Y % 4 != 0:
+    ans = 365
+elif Y % 4 == 0 and Y % 100 != 0:
+    ans = 366
+elif Y % 100 == 0 and Y % 400 != 0:
+    ans = 365
+elif Y % 400 == 0:
+     ans = 366
+    
 print(ans)

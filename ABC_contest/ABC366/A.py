@@ -15,3 +15,16 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+N,T,A = mi()
+
+N -= T
+N -= A
+
+mi = min(T,A)
+ma = max(T,A)
+
+if mi + N > ma:
+    print("No")
+else:
+    print("Yes")

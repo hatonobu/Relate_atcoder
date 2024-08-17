@@ -1,44 +1,77 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <set>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-const long long MOD = 998244353;
-const long long INF = 8 * 1000000000000000000LL;
+const int INF = INT_MAX;
+const long long LINF = 1e18;
+const long long MOD1000000007 = 1000000007;
+const long long MOD998244353 = 998244353;
+typedef long long ll;
+typedef vector<int> vii;
+typedef vector<ll> vll;
+#define rrep(i, n) for (int i = 1; i <= (int)(n); i++)
+#define rep(i, n) for (int i = 0;i < (int)(n); i++)
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+#define mod 998244353
 
-bool check(const string &s, int k) {
-    for (int i = 0; i <= s.size() - k; ++i) {
-        string t = s.substr(i, k);
-        string rt = t;
-        reverse(rt.begin(), rt.end());
-        if (t == rt) {
-            return false;
-        }
-    }
-    return true;
+int dx[] = { 1,0,-1,0,1,1,-1,-1 };
+int dy[] = { 0,1,0,-1,1,-1,1,-1 };
+
+template <class T>
+bool clamp(T x, T min, T max) { return (x >= min && x <= max); }
+template <class T>
+void chmin(T &a, const T &b) noexcept {
+    if (b < a) a = b;
+}
+template <class T>
+void chmax(T &a, const T &b) noexcept {
+    if (a < b) a = b;
 }
 
 int main() {
-    int N, K;
-    cin >> N >> K;
-    string S;
-    cin >> S;
+    // code
+    int n;
+    cin >> n;
+    string s[n];
+    rep(i,n){
+        cin >> s[i];
+    }
 
-    set<string> check_set;
-    int ans = 0;
-
-    sort(S.begin(), S.end());
-    do {
-        if (check(S, K)) {
-            ans += 1;
-            check_set.insert(S);
+    int m = 0;
+    rep(i,n){
+        int S = s[i].size();
+        chmax(m,S);
+    }
+    rep(i,n){
+        if(s[i].size() < m){
+            rep(j,m-s[i].size()){
+                s[i].push_back('*');
+            }
         }
-    } while (next_permutation(S.begin(), S.end()));
-
-    cout << ans << endl;
-
+    }
+    string t[m];
+    rep(i,m){
+        rep(j,n){
+            //cout << s[n-j-1][i] << endl;
+            if(s[n-j-1][i] == '*'){
+                t[i].push_back('*');    
+            }
+            else{
+                t[i].push_back(s[n-j-1][i]);
+            }
+        }
+    }
+    rep(i,m){
+        rep(j,n){
+            if(t[i].back() == '*' || t[i].back() == ' '){
+                t[i].pop_back();
+            }
+        }
+        
+    }
+    for(auto x : t){
+        cout << x << endl;
+        cout << x.size() << endl;
+    }
     return 0;
 }

@@ -16,3 +16,13 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
+N = ii()
+S = [input() for _ in range(N)]
+
+ans = "Yes"
+for i in range(N-2):
+    if S[i] == S[i+1]:
+        if S[i] == "sweet":
+            ans = "No"
+
+print(ans)

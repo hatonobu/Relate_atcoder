@@ -16,22 +16,27 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N = ii()
-S = []
-for i in range(N):
-    s = input()
-    s += "*"*100
-    S.append(s)
+N,K = mi()
+if N-K == 1:
+    print(0)
+    exit()
+q = deque()
+A = li()
+A.sort()
+check = []
+for i in range(N-1):
+    check.append(A[i+1] - A[i])
 
-ans = [""]*(100)
-for i in range(N):
-    checkS = S[-1-i]
-    for j in range(100):
-        ans[j] += checkS[j]
+ans = INF
 
-for a in ans:
-    for k in range(len(a)-1,-1,-1):
-        if a[k] != "*":
-            print(a[:k+1])
-            break
+total = 1
+c = 0
+for i in range(N-1):
+    c += check[i]
+    total += 1
+    if total >= N-K:
+        ans = min(ans,c)
+        c -= check[i-K+1]
+        total -= 1
 
+print(ans)

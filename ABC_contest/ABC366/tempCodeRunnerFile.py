@@ -16,27 +16,32 @@ lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
 
-N,K = mi()
-if N-K == 1:
-    print(0)
-    exit()
-q = deque()
-A = li()
-A.sort()
-check = []
-for i in range(N-1):
-    check.append(A[i+1] - A[i])
+N = ii()
+N_matrix = [[[0]*N for _ in range(N)] for _ in range(N)]
+X_ruiseki = []
+Y_ruiseki = []
+Z_ruiseki = []
+ruisekiMatrix = [[[0]*(N+3) for _ in range(N+3)] for _ in range(N+3)]
 
-ans = INF
+for x in range(N):
+    for y in range(N):
+        n = li()
+        for z in range(N):
+            N_matrix[x][y][z] = n[z]
 
-total = 1
-c = 0
-for i in range(N-1):
-    c += check[i]
-    total += 1
-    if total >= N-K:
-        ans = min(ans,c)
-        c -= check[i-K+1]
-        total -= 1
+for x in range(1,N+1):
+    for y in range(1,N+1):
+        for z in range(1,N+1):
+            ruisekiMatrix[x][y][z] = ruisekiMatrix[x][y-1][z] + ruisekiMatrix[x][y][z-1] - ruisekiMatrix[x][y-1][z-1] + N_matrix[x-1][y-1][z-1]
 
-print(ans)
+
+Q = ii()
+for i in range(Q):
+    x1,x2,y1,y2,z1,z2 = mi()
+    y1 -= 1
+    z1 -= 1
+    ans = 0
+    for i in range(x1,x2+1):
+        ans += ruisekiMatrix[i][y2][z2] - ruisekiMatrix[i][y1][z2] - ruisekiMatrix[i][y2][z1] + ruisekiMatrix[i][y1][z1]
+        print(ruisekiMatrix[i][y2][z2], ruisekiMatrix[i][y1][z2], ruisekiMatrix[i][y2][z2], ruisekiMatrix[i][y1][z1])
+    print(ans)
