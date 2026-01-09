@@ -15,3 +15,14 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+N = ii()
+A = lli(N)
+
+now = 1
+for i in range(1,N+1):
+    m = max(i,now)
+    l = min(i,now)
+    now = A[m-1][l-1]
+
+print(now)

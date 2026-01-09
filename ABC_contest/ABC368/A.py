@@ -15,3 +15,8 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+N,K = mi()
+A = li()
+
+print(*A[-K:] , *A[:N-K])

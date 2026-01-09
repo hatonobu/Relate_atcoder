@@ -15,3 +15,25 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+S = list(input())
+T = list(input())
+
+ans = []
+
+num = []
+
+for i in range(len(S)):
+    if ord(S[i]) > ord(T[i]):
+        num.append(i)
+
+for i in range(len(S)-1,-1,-1):
+    if ord(S[i]) < ord(T[i]):
+        num.append(i)
+
+for n in num:
+    S[n] = T[n]
+    ans.append("".join(S))
+
+print(len(ans))
+print(*ans,sep="\n")

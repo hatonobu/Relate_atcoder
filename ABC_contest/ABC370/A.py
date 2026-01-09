@@ -15,3 +15,13 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+L,R = mi()
+
+if L == R:
+    print("Invalid")
+else:
+    if L == 1:
+        print("Yes")
+    else:
+        print("No")

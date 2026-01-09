@@ -1,0 +1,1 @@
+[next[i][:] for i in range(H)]

@@ -1,11 +1,13 @@
 import sys
 from collections import deque,defaultdict
+#import pypyjit
 import itertools
 import heapq
 import bisect
 import queue
 
-#sys.setrecursionlimit(10 ** 9)
+#pypyjit.set_param("max_unroll_recursion=-1")
+sys.setrecursionlimit(10 ** 9)
 input = lambda: sys.stdin.readline().rstrip()
 ii = lambda: int(input())
 mi = lambda: map(int, input().split())
@@ -15,3 +17,24 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+N = ii()
+A = li()
+
+ans = N
+sa = -1
+count = 1
+for i in range(N-1):
+    if count == 1:
+        sa = A[i+1] - A[i]
+    else:
+        if A[i+1] - A[i] == sa:
+            pass
+        else:
+            sa = A[i+1] - A[i]
+            ans += (count * (count - 1)) // 2
+            count = 1
+    count += 1
+
+ans += (count * (count - 1)) // 2
+print(ans)

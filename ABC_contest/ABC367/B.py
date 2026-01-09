@@ -15,3 +15,17 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+X = input()
+ans = []
+t = len(X)
+for x in X[::-1]:
+    if x == "0":
+        t -= 1
+    elif x == ".":
+        t -= 1
+        break
+    else:
+        break
+
+print(X[:t])

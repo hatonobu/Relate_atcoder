@@ -15,3 +15,25 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+N,M = mi()
+A = li()
+P = [0]*M
+
+ruiseki = [0]
+for a in A:
+    ruiseki.append(ruiseki[-1] + a)
+
+for a in A[:-1]:
+    ruiseki.append(ruiseki[-1] + a)
+
+ans = 0
+for i in range(N):
+    ans += P[ruiseki[i] % M]
+    P[ruiseki[i] % M] += 1
+
+for i in range(N,2*N):
+    P[ruiseki[i-N] % M] -= 1
+    ans += P[ruiseki[i] % M]
+
+print(ans)

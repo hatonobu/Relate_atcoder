@@ -15,3 +15,19 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+
+N,K = mi()
+R = li()
+
+for e in itertools.product(range(1,6),repeat=N):
+    total = 0
+    f = True
+    for i in range(N):
+        total += e[i]
+        if e[i] > R[i]:
+            f = False
+            break
+    if f:
+        if total % K == 0:
+            print(*e)

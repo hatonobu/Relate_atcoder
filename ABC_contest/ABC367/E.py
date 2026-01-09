@@ -15,3 +15,30 @@ li_st = lambda: list(map(str, input().split()))
 lli = lambda n: [li() for _ in range(n)]
 mod = 998244353
 INF = 8 * 10**18
+
+N,K = mi()
+X = li()
+A = li()
+
+check = [[] for _ in range(N)]
+
+d = defaultdict(list)
+for i in range(N):
+    s = X[i]
+    s -= 1
+    if d[s]:
+        pass
+    else:
+        d[s] = [1,s]
+        root = [s]
+        nxt = X[s]
+        while(d.get(s,-1) != -1):
+            if d[nxt]:
+                break
+            root.append(nxt)
+            d[nxt] = [len(root),s]
+            nxt = X[nxt]
+        check[i] = root
+
+print(d)
+print(check)
